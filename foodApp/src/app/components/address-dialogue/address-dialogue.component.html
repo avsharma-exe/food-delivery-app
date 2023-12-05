@@ -1,0 +1,56 @@
+<h2 mat-dialog-title>Enter Delivery Address</h2>
+<mat-dialog-content class="mat-typography">
+  <hr class="bg-danger">
+  <div class="example-container">
+    <div class="form-container">
+      <form [formGroup]="addressForm" (submit)="submitAddress()">
+
+
+        <mat-form-field appearance="outline" class="col-md-6 mt-2">
+          <mat-label class="">Street address</mat-label>
+          <input matInput formControlName="streetAddress" placeholder="Street Address">
+          <mat-error *ngIf="addressForm.controls.streetAddress.touched && addressForm.controls.streetAddress.invalid">
+            <span *ngIf="addressForm.controls.streetAddress.errors.required">Enter this field.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-6 mt-2">
+          <mat-label class="">Landmark</mat-label>
+          <input matInput formControlName="landmark" placeholder="landmark">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-6 mt-2">
+          <mat-label class="">Area</mat-label>
+          <input matInput formControlName="area" placeholder="area">
+          <mat-error *ngIf="addressForm.controls.area.touched && addressForm.controls.area.invalid">
+            <span *ngIf="addressForm.controls.area.errors.required">Enter this field.</span>
+          </mat-error>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="outline" class="col-md-6 mt-2">
+          <mat-label class="">City</mat-label>
+          <input matInput formControlName="city" placeholder="city" >
+          <mat-error *ngIf="addressForm.controls.city.touched && addressForm.controls.city.invalid">
+            <span *ngIf="addressForm.controls.city.errors.required">Enter this field.</span>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-6 mt-2 ">
+          <mat-label class="">Pincode</mat-label>
+          <input matInput formControlName="zip" type="number" placeholder="Pincode">
+          <mat-error *ngIf="addressForm.controls.zip.touched && addressForm.controls.zip.invalid">
+            <span *ngIf="addressForm.controls.zip.errors.required">Enter this field.</span>
+            <span *ngIf="addressForm.controls.zip.errors.pattern"> Enter valid pin code.</span>
+          </mat-error>
+        </mat-form-field>
+
+
+        <hr class="mt-2 bg-white">
+        <button mat-button [mat-dialog-close]>Cancel</button>
+        <button mat-raised-button color="warn" class="ml-2" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</mat-dialog-content>

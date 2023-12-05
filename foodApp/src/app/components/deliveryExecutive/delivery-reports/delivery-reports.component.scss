@@ -1,0 +1,11 @@
+@import '../../../../scss_variables.scss';
+
+table th{
+  font-size: 1.2rem;
+  font-weight: 400;
+  background-color: $theme-red;
+  color: $color-white;
+}
+.jumbotron{
+  overflow: auto;
+}

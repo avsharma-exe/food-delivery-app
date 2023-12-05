@@ -1,0 +1,38 @@
+@import '../../../scss_variables.scss';
+
+.shadow{
+    -webkit-box-shadow: 3px 10px 5px 0px $shadow-color-black;
+    -moz-box-shadow: 3px 10px 5px 0px $shadow-color-black;
+    box-shadow: 3px 10px 5px 0px $shadow-color-black;
+}
+.home-nav, .home-nav-2{
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-color: $card-btn-red;
+    z-index: 5;
+    transition:height 0.5s ;
+    
+    nav{
+        .collapse{
+            .nav-item-button {
+                background-color: $card-btn-red;
+            }
+        }
+        .nav-icon {
+            height: 100%;
+        }
+        .btnColor {
+            background-color: $color-white;
+            color: $card-btn-red;
+        }
+    }
+
+}
+
+::ng-deep .mat-badge-content {
+    background-color: #ffca2b;
+    color: $color-black;
+}

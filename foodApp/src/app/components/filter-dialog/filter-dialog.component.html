@@ -1,0 +1,13 @@
+<h1>Filter Cuisine</h1>
+<div mat-dialog-content class="filter-container container-fluid">
+    <form [formGroup]='categoriesForm'>
+   
+        <ng-container *ngFor='let category of categoriesFormArray.controls; let index = index'>
+            <mat-checkbox [formControl]='formControlOf(index)'>
+                {{categoryData[index].categoryName}}</mat-checkbox>
+        </ng-container>
+    </form>
+    <div mat-dialog-actions>
+        <button (click)='submit()'>Close</button>
+    </div>
+</div>

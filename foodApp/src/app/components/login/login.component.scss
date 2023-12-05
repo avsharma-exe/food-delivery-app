@@ -1,0 +1,40 @@
+
+@import '../../../scss_variables.scss';
+
+.otp-button {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+mat-tab{
+    .form-container{
+        form{
+            .login-button {
+                margin-left: 1.5rem;
+                margin-right: 1.5rem;
+            }
+        }
+    }
+}
+
+.row{
+    .dialog-title {
+        color: $card-btn-red;
+    }
+ }
+.forgot-tab {
+    justify-content: center;
+    text-align: center;
+}
+
+.forget-title {
+    color: $card-btn-red;
+}
+::ng-deep .mat-tab-label, .mat-tab-link {
+    color: $card-btn-red;
+}
+
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background-color: $card-btn-red;
+}
+

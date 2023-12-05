@@ -1,0 +1,196 @@
+@import '../../../scss_variables.scss';
+
+ul {
+    margin: 0px;
+    padding: 0px;
+}
+.footer-section {
+  background: $color-footer-bg;
+  position: relative;
+}
+.footer-cta {
+  border-bottom: 1px solid $theme-red;
+}
+.single-cta i {
+  color: $theme-red;
+  font-size: $value-30px;
+  float: left;
+  margin-top: 8px;
+}
+.cta-text {
+  padding-left: 15px;
+  display: inline-block;
+}
+.cta-text h4 {
+  color: $color-black;
+  font-size: $value-20px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.footer-content {
+  position: relative;
+  z-index: 2;
+}
+.footer-pattern img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: $value-30px;
+  background-size: cover;
+  background-position: $value-100 $value-100;
+}
+.footer-logo {
+  margin-bottom: $value-30px;
+}
+.footer-logo img {
+    max-width: 200px;
+}
+.footer-text p {
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: $color-footer-text;
+  line-height: 28px;
+}
+.footer-social-icon span {
+  color: $color-black;
+  display: block;
+  font-size: $value-20px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: $value-20px;
+}
+.footer-social-icon a {
+  color: $color-black;
+  font-size: 16px;
+  margin-right: 15px;
+}
+.footer-social-icon i {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  line-height: 38px;
+  border-radius: $value-50;
+}
+.facebook-bg{
+    background: $color-facebook-bg;
+    color: $color-white;
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.twitter-bg{
+    color: $color-white;
+    background: $color-twitter-bg ;
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.insta-bg{
+    color: $color-white;
+    background: $theme-red;
+    border-radius: 15px;
+    height: $value-30px;
+    width: $value-30px;
+}
+.mail-bg{
+    color: $theme-red;
+    width: $value-10;
+    height: $value-10;
+}
+.phone-bg{
+    color: $theme-red;
+    width: $value-10;
+    height: $value-10;
+}
+.marker-bg{
+    color: $theme-red;
+    width: $value-10;
+    height: $value-10;
+}
+
+.footer-widget-heading h3 {
+  color: $color-black;
+  font-size: $value-20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+}
+.footer-widget-heading h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 50px;
+  background: $theme-red;
+}
+.subscribe-form {
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-form{
+   input {
+    width: $value-100;
+    padding: 14px 28px;
+    background: $color-white;
+    border: 1px solid $color-black;
+    color: $color-black;
+  }
+}
+.subscribe-form button {
+    position: absolute;
+    right: 0;
+    background: $theme-red;
+    padding: 13px$value-20px;
+    border: 1px solid $theme-red;
+    color: $color-white;
+    top: 0;
+}
+.subscribe-form button:hover {
+    background: $theme-red;
+}
+.subscribe-form button i {
+  color: $color-black;
+  font-size: 22px;
+  transform: rotate(-6deg);
+}
+.copyright-area{
+  background: $color-black;
+  padding: 25px 0;
+}
+.copyright-text p {
+  margin: 0;
+  font-size: 14px;
+  color: $color-footer-text ;
+}
+.copyright-text p a{
+  color: $theme-red;
+}
+.footer-menu li {
+  display: inline-block;
+  margin-left: $value-20px;
+}
+.footer-menu li:hover a{
+  color: $theme-red;
+}
+.footer-menu li a {
+  font-size: 14px;
+  color: $color-footer-text;
+}
+
+
+@mixin for-responsive {
+  @media (max-width: 599px) { @content; }
+}
+@include for-responsive {
+  .media-hide{
+      display: none;
+  }
+  .footer-logo-text{
+      display: inline;
+  }
+  .footer-social-icon{
+    margin-left: 38%;
+  }
+}
+

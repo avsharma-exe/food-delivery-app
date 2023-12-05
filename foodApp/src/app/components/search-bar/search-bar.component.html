@@ -1,0 +1,21 @@
+<div class="row search-main">
+  <mat-form-field appearance="outline" class="col-3 p-0">
+    <mat-label>Select City</mat-label>
+    <input type="text" matInput [formControl]='searchedcity' [matAutocomplete]="autoGroup">
+    <mat-autocomplete #autoGroup="matAutocomplete" (optionSelected)='onCitySelection($event)'>
+      <mat-optgroup *ngFor="let group of stateGroupOptions | async" [label]="group.state" >
+        <mat-option *ngFor="let city of group.cities" [value]="city"  >
+          {{city}}
+        </mat-option>
+      </mat-optgroup>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field appearance="outline" color='accent' class="col-8 p-0">
+
+    <input matInput placeholder=" Search for restaurant, cuisine or dish " [formControl]='searchedText' >
+    <span matPrefix><mat-icon aria-hidden="false" >search</mat-icon>
+    </span>
+
+  </mat-form-field>
+
+</div>

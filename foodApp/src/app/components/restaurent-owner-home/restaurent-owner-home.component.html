@@ -1,0 +1,88 @@
+<div class="container">
+  <section>
+    <div class="div-animate-left">
+      <p class="display-4 theme-color mt-5 ml-5 heading text-dark text-center" > 
+        <span class="material-icons h1 theme-color mt-3">
+          restaurant_menu
+        </span>
+        {{resName}} Restaurant
+        <span class="material-icons h1 theme-color mt-3">
+          restaurant_menu
+        </span>
+      </p> <hr>
+    </div> 
+  </section>
+  <section>
+    <p class="display-4 theme-color mt-5 ml-5 heading">Incoming Orders</p> <hr>
+    <p class="text-success mt-5 ml-5 h4 ">* You have  {{this.Ocount}} Incoming Orders. * <span *ngIf = "Ocount else noOrders" class="ml-3 theme-color h4" > Start Accepting...!! </span> <ng-template #noOrders> <span class="ml-3 theme-color h4" > Take a Break ..!!</span> </ng-template> </p>
+    <div class="jumbotron pt-0 pb-0" *ngIf="orders && orders.length else loading">
+      <mat-card class="pt-2 m-4 mt-0 mat-card-content" *ngFor="let order of orders">
+        <div class="row">
+          <div class="col-md-2 col-lg-2 d-none d-md-block d-xl-block">
+            <span class="material-icons display-3">
+              lunch_dining
+            </span>
+            <span class="material-icons">
+              av_timer
+              </span>
+          </div>
+          <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 p-3">
+            <div class="row ">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 h5 theme-color">
+                OrderId-
+              </div>
+              <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12 mb-3">
+                <div class="lead pb-2"> {{order._id}}
+                </div>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 h5 theme-color">
+                PickUp-
+              </div>
+              <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12 mb-3">
+                <div class="lead pb-2"> {{order.restaurantDetails.restaurantName}}
+                  <span class="text-muted font-weight-bold border-dark">PinCode - </span>
+                  <span class="h5">{{order.restaurantDetails.restaurantLocation.zip}}</span>
+                </div>
+                <div class="text-muted h5"> {{order.restaurantDetails.restaurantLocation.area}} <span >(Locality)</span> </div>
+                <div class="lead"> {{order.restaurantDetails.restaurantLocation.landmark}}
+                   <span >(Landmark)</span> </div>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 h5 theme-color">
+                Drop-
+              </div>
+              <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                <div class="lead pb-2"> <p class="font-weight-bold">{{order.customerName}}</p>
+                  {{order.orderLocation.streetAddress}}
+                  <span class="text-muted font-weight-bold border-dark">PinCode - </span>
+                  <span class="h5">{{order.orderLocation.streetAddress}}</span>
+                </div>
+                <div class="text-muted h5"> {{order.orderLocation.area}} <span >(Locality)</span> </div>
+                <div class="lead"> {{order.orderLocation.landmark}} <span >(Landmark)</span> </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+            <p class="lead font-weight-bold p-3">COST -
+              <span>   &#x20B9; </span>  <span class="lead font-weight-bold text-danger">{{order.totalAmount}} </span></p>
+          </div>
+        </div>
+        <mat-card-actions class="text-right p-4">
+          <button mat-raised-button class="accept-button" (click)="acceptOrder(order._id)">Accept</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    <ng-template #loading>
+      <div class="jumbotron">
+        <h1 class="display-3">No Incoming Orders</h1>
+        <p class="lead">Keep Checking</p>
+        <hr class="my-2">
+        <p>Thanks for being our valuable Executive</p>
+      </div>
+    </ng-template>
+  </section>
+</div>
+

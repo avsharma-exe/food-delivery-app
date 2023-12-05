@@ -1,0 +1,143 @@
+@import '../../../scss_variables.scss';
+
+.main-div{
+    max-width: 1400px;
+    background-color: $color-white;
+}
+.breadcrumb{
+    background-color: $color-white;
+}
+
+.breadcrumb-item, .breadcrumb-item a{
+    text-decoration: none;
+    color:  $card-btn-red;
+    font-size: large;
+}
+
+.breadcrumb-item+.breadcrumb-item::before{
+    color: $card-btn-red;
+}
+
+.restaurant-image-grid .restaurant-image-tile img{
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+
+.restaurant-image-grid .restaurant-image-tile:hover img{
+    -webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.restaurant-image-tile {
+    border: 3px solid $color-white;
+    div{
+        background: rgb(238, 237, 237);
+        width: 100%;
+        height: 100%;
+        img{
+            width: 100%;
+            height: 100%;
+            background-image:url('../../../assets/images/image-not-found.jpeg');
+        }
+    }
+  }
+
+.restaurant-name{
+    font-size: xx-large;
+    font-weight: 500;
+    font-family: Helvetica,sans-serif;
+}
+
+.restaurant-info{
+    font-size: medium;
+    font-weight: 500;
+    font-family: Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.right-rest-rating{
+    min-width: max-content;
+    height: max-content;
+}
+
+.rating-avg{
+    line-height: 0.35rem;
+    color: $card-btn-red;
+}
+
+.add-review-button{
+    margin-right: 10px;
+    margin-top: 10px;
+    background-color: $card-btn-red;
+    color: white;
+}
+
+.mat-tab-label .mat-tab-label-content {
+    font-size: 50px !important;
+    color: $card-btn-red !important;
+}
+
+::ng-deep .mat-tab-label .mat-tab-label-content {
+    font-size: large;
+    color: $card-btn-red !important;
+}
+
+.overview-title{
+    font-family: Helvetica,sans-serif;
+}
+
+.overview-info{
+    font-size: medium;
+    font-weight: 500;
+    font-family: Helvetica,sans-serif;
+}
+
+.cuisine-button{
+    border-radius: 10px;
+    border-color: lightgray;
+    margin-right: 10px;
+    color: $card-btn-red;
+    cursor: default;
+}
+
+.average-cost-title{
+    font-family: Helvetica,sans-serif;
+}
+
+.average-cost-info{
+    font-size: medium;
+    font-weight: 500;
+    font-family: Helvetica,sans-serif;
+}
+
+.more-info-title{
+    font-size: large;
+    font-weight: 500;
+    font-family: Helvetica,sans-serif;
+}
+
+.more-info-chip{
+    font-size: medium;
+    font-weight: 500;
+    font-family: Helvetica,sans-serif;
+    border: none;
+    background-color: $card-btn-red;
+    color: $color-white;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+    background-color: rgb(90, 228, 90);
+}
+
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+    background-color: rgb(52, 199, 52);
+}
+
+
+
+
+
+
+

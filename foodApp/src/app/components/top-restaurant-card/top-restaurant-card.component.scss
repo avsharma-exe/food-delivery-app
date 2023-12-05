@@ -1,0 +1,26 @@
+.card-clickable {
+  padding: 0;
+  line-height: initial;
+  font-weight: initial;
+  width: 100%;
+  transition: 0.7s ;
+  .restaurant-card {
+    height: max-content;
+    min-height: 53vh;
+    width: 100%;
+    overflow: hidden;
+    img {
+      height: 34vh;
+      object-fit: cover;
+    }
+    .rating {
+      color: orangered;
+    }
+  }
+}
+.card-clickable:hover{
+  transform: scale(1.1,1.1);
+}
+.subtitle{
+  font-size: 18px;
+}

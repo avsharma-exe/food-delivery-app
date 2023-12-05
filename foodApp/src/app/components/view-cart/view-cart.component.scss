@@ -1,0 +1,39 @@
+
+@import '../../../scss_variables.scss';
+
+.add-to-cart-button{
+    border-radius: 8px;
+    color: $card-btn-red;
+    border: 1px solid $card-btn-red;
+}
+
+.cart-details{
+    box-shadow: 0px 22px 74px -18px $card-red-webkit;
+    -webkit-box-shadow: 0px 22px 74px -18px $card-red-webkit;
+    -moz-box-shadow: 0px 22px 74px -18px $card-red-webkit;
+    z-index: 2;
+    padding: 30px;
+    min-width: max-content;
+    max-width: 700px;
+}
+.min-width{
+    min-width: max-content;
+}
+
+.clear-button{
+    background-color: $card-btn-red;
+    border-radius: 0;
+}
+
+.total1{
+    float: left;
+}
+
+.total2{
+    float: right;
+}
+
+.ruler{
+    height: 1px;
+    background-color: $card-btn-red;
+}

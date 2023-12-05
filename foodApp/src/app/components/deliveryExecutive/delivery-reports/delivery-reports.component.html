@@ -1,0 +1,90 @@
+<section>
+  <div class="container">
+      <p class="display-4 theme-color ml-5 heading pt-3">Ratings</p>
+    <div class="jumbotron jumbotron" *ngIf="monthlyRating && monthlyRating.length else noRating">
+      <div class="container">
+        <canvas baseChart
+        [datasets]="ratingChartData"
+        [labels]="ratingChartLabels"
+        [options]="ratingChartOptions"
+        [legend]="ratingChartLegend"
+        [chartType]="ratingChartType" width="200" height="50">
+        </canvas>
+        <button mat-button mat-raised-button color="primary" (click)="randomizeRating()">Toggle</button>
+      </div>
+    </div>
+  </div>
+  <ng-template #noRating>
+    <div class="jumbotron">
+      <h1 class="display-3">No Ratings</h1>
+      <p class="lead">Complete more deliveries.</p>
+      <hr class="my-2">
+      <p>Thanks for being our valuable Executive</p>
+    </div>
+  </ng-template>
+</section>
+<section>
+  <div class="container">
+    <p class="display-4 theme-color ml-5 heading">Deliveries</p>
+  <div class="jumbotron jumbotron" *ngIf="deliveryCount && deliveryCount.length else noDeliveries">
+    <div class="container">
+      <canvas baseChart
+      [datasets]="deliveryChartData"
+      [labels]="deliveryChartLabels"
+      [options]="deliveryChartOptions"
+      [legend]="deliveryChartLegend"
+      [chartType]="deliveryChartType" width="200" height="50">
+      </canvas>
+      <button mat-button mat-raised-button color="primary" (click)="randomizeDelivery()">Toggle</button>
+    </div>
+  </div>
+  <ng-template #noDeliveries>
+    <div class="jumbotron">
+      <h1 class="display-3">No Delivered Orders</h1>
+      <p class="lead">Complete more deliveries.</p>
+      <hr class="my-2">
+      <p>Thanks for being our valuable Executive</p>
+    </div>
+  </ng-template>
+  </div>
+</section>
+<section >
+  <div class="container">
+    <p class="display-4 theme-color ml-5 heading">Delivered Orders</p>
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+          <table class="table table-image table-bordered"  *ngIf="orders && orders.length">
+            <thead>
+              <tr>
+                <th scope="col">Order Id</th>
+                <th scope="col">Restaurant Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Order Location</th>
+                <th scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of orders">
+                <td>{{item._id}}</td>
+                <td>{{item.restaurantDetails.restaurantName}}</td>
+                <td>
+                  {{item.orderDateAndTime}}
+                </td>
+                <td>
+                  Street Add - {{item.orderLocation.streetAddress}}
+                  Area - {{item.orderLocation.area}}
+                  Zip - {{item.orderLocation.zip}}
+                </td>
+                <td>{{item.totalAmount}}</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

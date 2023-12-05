@@ -1,0 +1,58 @@
+<div class="rest-menu-div row mt-3 justify-content-center">
+    <div class="rest-menu-image col-md-4 col-sm-6 col-xs-6 ">
+        <img [src]='foodData.food.foodImage' onerror="this.src='../../../assets/images/image-not-found.jpeg'"
+            alt="Sorry!">
+    </div>
+
+    <div class="rest-menu-content-subdiv1 col-md-6 col-sm-6 col-xs-12">
+        <div class="d-flex align-items-center">
+            <h1 class="mb-0 mr-2">{{foodData.food.foodName}}</h1>
+            <img *ngIf="foodData.food.foodType==='veg'" src="../../../assets/images/veg-icon.png" class="type-icon"
+            alt='' />
+          <img *ngIf="foodData.food.foodType==='non veg'" src="../../../assets/images/non-veg-icon.png" class="type-icon"
+            alt='' />
+        </div>
+        <ng-container *ngIf='foodData.food.foodRating!=undefined && foodData.food.foodRating.length>0'>
+            <div class="d-flex">
+            <mat-icon aria-hidden="false" class="text-white bg-warning">star</mat-icon>
+            <h3 class="rating ml-1 mb-0"><strong>{{foodData?.avgRating?.toFixed(1)}}
+              </strong>({{foodData?.food?.foodRating?.length}}) </h3>
+            </div>
+          </ng-container>
+        <h3 class="mb-1">{{foodData.food.foodPrice | currency:"INR":"symbol"}}</h3>
+        <p>{{foodData.food.foodDescription}}</p>
+    </div>
+
+    <div class="rest-menu-content-subdiv2 text-right  col-md-2 col-sm-12 col-xs-12">
+        <ng-container
+            *ngIf='userData?.cart != undefined &&userData?.cart!=null && userData?.cart.restaurantId == foodData.restaurantId '>
+            <ng-container *ngIf='isFoodInCart(foodData.food._id) != -1'>
+
+                <mat-button-toggle-group name="fontStyle" aria-label="Font Style"
+                    class="cart-qty-button text-secondary">
+                    <mat-button-toggle value="bold" (click)='decrementItem(foodData.food._id)'>-</mat-button-toggle>
+                    <mat-button-toggle value="italic" class="cart-count-item">
+                        {{userData.cart.foodList[isFoodInCart(foodData.food._id)].quantity}}
+                    </mat-button-toggle>    
+                    <mat-button-toggle value="underline" (click)='incrementItem(foodData.food._id)'>+
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </ng-container>
+
+            <ng-container *ngIf='isFoodInCart(foodData.food._id)==-1'>
+                <button mat-stroked-button color="accent" class="add-to-cart-button"
+                    (click)="incrementItem(foodData.food._id)">Add to
+                    Cart</button>
+            </ng-container>
+        </ng-container>
+
+        <ng-container
+            *ngIf='userData?.cart === undefined || userData?.cart==null || userData?.cart.restaurantId != foodData.restaurantId '>
+            <button mat-stroked-button color="accent" class="add-to-cart-button"
+                (click)="incrementItem(foodData.food._id)">Add to
+                Cart</button>
+        </ng-container>
+
+    </div>
+
+</div>

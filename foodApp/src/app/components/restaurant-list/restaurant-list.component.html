@@ -1,0 +1,25 @@
+<div class="main-section max-width mx-auto ">
+    <div class="filter-section bg-light shadow row justify-content-between align-items-center px-3 py-2 mb-3 rounded mx-0">
+        <mat-slide-toggle class="col-3" [(ngModel)]='topRatedCheck'>Top Rated!</mat-slide-toggle>
+        <app-search-bar class="col-lg-6 col-md-7 col-sm-9" [defaultCity]='selectedCity' defaultText={{searchText}} (onCitySelect)='onCitySelect($event)'
+            (onSearchChange)='onSearchChange($event)'></app-search-bar>
+    
+    </div>
+    <div class=" container-fluid">
+        <div class="row justify-content-center " *ngIf='restaurants.length>0'>
+                <ng-container *ngFor='let restaurant of restaurants | topRatedRestaurant : topRatedCheck '>
+                    <app-restaurant-card class="col-lg-4 col-sm-6 col-12 mb-3" [restaurant]='restaurant'></app-restaurant-card>
+                </ng-container>
+          
+        </div>
+        <div class="mx-auto my-5" *ngIf='restaurants.length==0'>
+            <mat-card>
+                <mat-card-title>
+                    Opps!! No Restaurant Found.
+                </mat-card-title>
+
+            </mat-card>
+
+        </div>
+    </div>
+</div>

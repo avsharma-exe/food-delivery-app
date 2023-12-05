@@ -1,0 +1,28 @@
+@import '../../../scss_variables.scss';
+.card-clickable {
+  padding: 0;
+  line-height: initial;
+  font-weight: initial;
+  width: 100%;
+  margin: 3rem 0;
+  border-radius: 15px;
+  overflow: hidden;
+
+.top-food-card {
+    background: $color-white;
+    box-shadow: 0 0 0;
+    .type-icon{
+      width: $value-20px ;
+      height: $value-20px ;
+    }
+  }
+  
+  .dish-image.mat-card-image {
+    box-shadow: $color-black;
+    height: 25vh;
+    object-fit: cover;
+  }
+}
+.card-clickable:hover{
+  transform: scale(1.07,1.07);
+}

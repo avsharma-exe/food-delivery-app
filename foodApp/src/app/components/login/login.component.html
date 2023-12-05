@@ -1,0 +1,301 @@
+<section class="bg-light">
+    <div class="row mx-0">
+        <h2 mat-dialog-title class="col dialog-title">Welcome To Bon Appetit!</h2>
+        <mat-icon mat-dialog-close class="">close</mat-icon>
+    </div>
+    <mat-dialog-content class="mat-typography">
+        <ng-container *ngIf='!forgotpassword'>
+            <mat-tab-group dynamicHeight [(selectedIndex)]='currentIndex'>
+
+                <!-- Login form -->
+                <mat-tab label="Login" class="login-title">
+                    <div class="example-container">
+                        <div class="form-container">
+                            <form [formGroup]="loginForm" (submit)="submit()">
+                                <div class="row m-1 mt-2 p-2">
+                                    <mat-form-field class="form-field col-md-12" appearance="outline" color="primary">
+                                        <mat-label> E-mail
+                                        </mat-label>
+                                        <input matInput formControlName="email" required>
+                                        <mat-error
+                                            *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+                                            <span *ngIf="loginForm.controls.email.errors.required">This field is
+                                                mandatory.</span>
+                                            <span *ngIf="loginForm.controls.email.errors.pattern">This field is
+                                                invalid.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="row m-1 p-2">
+                                    <mat-form-field class="form-field col-md-12" appearance="outline" color="primary">
+                                        <mat-label> Password
+                                        </mat-label>
+                                        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+                                        <mat-icon matSuffix (click)="hide = !hide" color="warn">
+                                            {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        <mat-error
+                                            *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                                            <span *ngIf="loginForm.controls.password.errors.required">This field is
+                                                mandatory.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <mat-error>
+                                    <span *ngIf="errMsg">{{errMsg}}</span>
+                                </mat-error>
+                                <div *ngIf=''>{{errMsg}}</div>
+                                <div class="d-flex justify-content-between">
+                                    <button mat-raised-button color="warn" class="login-button mt-3 mb-2"
+                                        type="submit">LogIn</button>
+                                    <button mat-raised-button color="warn" class="login-button mt-3 mb-2" type="button"
+                                        (click)='forgotPassword()'>Forgot Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </mat-tab>
+
+                <!-- Register form -->
+
+                <mat-tab label="SignUp">
+                    <div class="example-container">
+                        <div class="form-container">
+                            <form [formGroup]="registerForm" (submit)="onSubmit()">
+                                <div class="row  mt-2 m-1">
+                                    <mat-form-field class="form-field col-md-6 col-sm-12" appearance="outline"
+                                        color="primary">
+                                        <mat-label> First Name</mat-label>
+                                        <input matInput formControlName="firstName" required>
+                                        <mat-error
+                                            *ngIf="registerForm.controls.firstName.touched && registerForm.controls.firstName.invalid">
+                                            <span *ngIf="registerForm.controls.firstName.errors.required">This field is
+                                                mandatory.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+
+                                    <mat-form-field class="form-field col-md-6 col-sm-12" appearance="outline"
+                                        color="primary">
+                                        <mat-label> Last Name</mat-label>
+                                        <input matInput formControlName="lastName" required>
+                                        <mat-error
+                                            *ngIf="registerForm.controls.lastName.touched && registerForm.controls.lastName.invalid">
+                                            <span *ngIf="registerForm.controls.lastName.errors.required">This field is
+                                                mandatory.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="row ml-1 mr-1 ">
+                                    <mat-form-field class="form-field col-md-12 col-sm-12" appearance="outline"
+                                        color="primary">
+                                        <mat-label> E-mail</mat-label>
+                                        <input matInput formControlName="email" required>
+                                        <mat-error
+                                            *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+                                            <span *ngIf="registerForm.controls.email.errors.required">This field is
+                                                mandatory.</span>
+                                            <span *ngIf="registerForm.controls.email.errors.pattern">This field is
+                                                invalid.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="row ml-1 mr-1 ">
+                                    <mat-form-field class="form-field col-md-12 col-sm-12" appearance="outline"
+                                        color="primary">
+                                        <mat-label>Password </mat-label>
+                                        <input matInput formControlName="password"
+                                            [type]="hideSign ? 'password' : 'text'">
+                                        <mat-icon matSuffix (click)="hideSign = !hideSign" color="warn">
+                                            {{hideSign ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        <mat-error
+                                            *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+                                            <span *ngIf="registerForm.controls.password.errors.required">This field is
+                                                mandatory.</span>
+                                            <span *ngIf="registerForm.controls.password.errors.minLength">Password
+                                                should be
+                                                atleast 6 charachters.</span>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="row  ml-1 mr-1 ">
+                                    <mat-form-field class="form-field col-md-6" appearance="outline" color="primary">
+                                        <mat-label> Mobile Number</mat-label>
+                                        <input matInput type="number" formControlName="mobileNumber" required>
+                                        <mat-error
+                                            *ngIf="registerForm.controls.mobileNumber.touched && registerForm.controls.mobileNumber.invalid">
+                                            <span *ngIf="registerForm.controls.mobileNumber.errors.required">This field
+                                                is
+                                                mandatory.</span>
+                                            <span *ngIf="registerForm.controls.mobileNumber.errors.pattern">Enter a
+                                                valid 10
+                                                digit Number</span>
+                                        </mat-error>
+                                        <mat-icon matSuffix color="warn">dialpad</mat-icon>
+
+                                    </mat-form-field>
+                                    <mat-form-field appearance="outline" color="primary" class="col-md-6">
+                                        <mat-label class="">Gender</mat-label>
+                                        <mat-select class="text-dark" formControlName="gender">
+                                            <mat-option value="male" class="text-dark bg-light">Male </mat-option>
+                                            <mat-option value="female" class="text-dark bg-light">Female</mat-option>
+                                        </mat-select>
+                                        <mat-icon matSuffix color="warn">wc</mat-icon>
+                                    </mat-form-field>
+                                </div>
+
+
+                                <div class="row ml-1 mr-1 ">
+                                    <mat-label>Select Role</mat-label>
+                                    <mat-radio-group aria-label="Select an option" class="form-field col-md-12 mt-2"
+                                        formControlName='role' color="warn">
+                                        <mat-radio-button value="user"> User
+                                        </mat-radio-button><br>
+                                        <mat-radio-button value="de"> Delivery Executive
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+
+                                <ng-container *ngIf="isSelected('de')">
+                                    <div class="row  ml-1 mr-1">
+                                        <mat-form-field appearance="outline" color="primary" class="col-md-12 mt-2">
+                                            <mat-label class="">Vehicle Number</mat-label>
+                                            <input matInput formControlName="vehicleNumber" type="text">
+                                        </mat-form-field>
+                                    </div>
+
+
+                                    <div class="row  ml-1 mr-1">
+                                        <mat-form-field appearance="outline" color="primary" class="col-md-6 mt-2">
+                                            <mat-label class="">Street address</mat-label>
+                                            <input matInput formControlName="streetAddress">
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="outline" color="primary" class="col-md-6 mt-2">
+                                            <mat-label class="">Pincode</mat-label>
+                                            <input matInput formControlName="zip" type="number">
+                                            <mat-error
+                                                *ngIf="registerForm.controls.zip.touched && registerForm.controls.zip.invalid">
+                                                <span *ngIf="registerForm.controls.zip.errors.pattern">Enter a valid 6
+                                                    digit
+                                                    Pincode</span>
+                                            </mat-error>
+                                        </mat-form-field>
+
+                                    </div>
+
+                                    <div class="row  ml-1 mr-1">
+                                        <mat-form-field appearance="outline" color="primary" class="col-md-6 mt-2">
+                                            <mat-label class="">Landmark</mat-label>
+                                            <input matInput formControlName="landmark">
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="outline" color="primary" class="col-md-6 mt-2">
+                                            <mat-label class="">Area</mat-label>
+                                            <input matInput formControlName="area">
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="row  ml-1 mr-1">
+                                        <mat-form-field appearance="outline" color="primary" class="col-md-4 mt-2">
+                                            <mat-label class="">City</mat-label>
+                                            <input matInput formControlName="city">
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="outline" color="primary" class="col-md-4 mt-2">
+                                            <mat-label class="">State</mat-label>
+                                            <input matInput formControlName="state">
+                                        </mat-form-field>
+
+                                        <mat-form-field appearance="outline" color="primary" class="col-md-4 mt-2">
+                                            <mat-label class="">Country</mat-label>
+                                            <input matInput formControlName="country">
+                                        </mat-form-field>
+                                    </div>
+                                </ng-container>
+
+                                <hr class="mt-2 bg-white">
+                                <mat-error class="mb-2" color="warn">
+                                    <span *ngIf="isUserExist">User is already exist! Please Login.</span>
+                                </mat-error>
+                                <button mat-raised-button color="warn" class="ml-2" type="submit">Register</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </mat-tab>
+            </mat-tab-group>
+        </ng-container>
+
+
+        <!-- Forgot Password  -->
+
+        <ng-container *ngIf='forgotpassword'>
+            <mat-tab-group>
+
+                <mat-tab label="Reset Password" color="warn" class="forgot-tab">
+                    <div>
+                        <div class="forget-password">
+
+                            <mat-form-field class="form-field col-md-6" appearance="outline" color="warn">
+
+                                <mat-label> E-mail</mat-label>
+                                <input matInput [formControl]="email" required [readonly]='readonlyEmail'>
+
+                            </mat-form-field>
+                            <button mat-raised-button color="warn" class="otp-button"
+                                (click)='sendOtpForResetpassword()'>{{(otp==0) ? "Send OTP" : "Resend OTP"}}</button>
+                        </div>
+                        <mat-form-field class="form-field col-md-6" appearance="outline" color="warn">
+                            <mat-label> OTP
+                            </mat-label>
+                            <input matInput [formControl]="formOtp" [readonly]='readonlyOtp'>
+                        </mat-form-field>
+                        <button mat-raised-button color="warn" class="otp-button" (click)='checkOtp()'>Confirm
+                            OTP</button>
+                            <mat-error>
+                                <span *ngIf="errMsgCorrectOTP.length!=0">{{errMsgCorrectOTP}}</span>
+                            </mat-error>
+                    </div>
+
+
+
+                    <!-- reset password -->
+                    <div *ngIf='resetPassword'>
+                        <div class="forget-password">
+                            <mat-form-field class="form-field col-md-12" appearance="outline" color="warn">
+                                <mat-label> New Password
+                                </mat-label>
+                                <input matInput [formControl]="newPassword" [type]="hide ? 'password' : 'text'">
+                                <mat-icon matSuffix (click)="hide = !hide" color="warn">
+                                    {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                <mat-error
+                                    *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+                                    <span *ngIf="loginForm.controls.password.errors.required">This field is
+                                        mandatory.</span>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-error>
+                                <span *ngIf="errForgotPassword">{{errForgotPassword}}</span>
+                            </mat-error>
+                            <button mat-raised-button color="warn" class="otp-button"
+                                (click)='confirmResetPassword()'>Reset
+                                Password</button>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+
+        </ng-container>
+
+    </mat-dialog-content>
+
+
+</section>
+
+<ng-template #passwordUpdated>
+  <h1>Password updated successfully...</h1>
+</ng-template>
+

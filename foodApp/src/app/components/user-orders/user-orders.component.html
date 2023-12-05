@@ -1,0 +1,40 @@
+<section id="active-order">
+    <div class="container">
+        <p class="display-4 theme-color pt-5 heading">Active Orders</p>
+        <div class="jumbotron" *ngIf='currentOrders && currentOrders.length else noRecent'>
+            <button mat-stroked-button (click)='refreshOrders()'>Refresh</button>
+
+            <div class="container" *ngFor='let order of currentOrders'>
+
+                <app-active-order [order]='order'></app-active-order>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="past-orders">
+    <div class="container">
+        <p class="display-4 theme-color pt-5 heading">Past Orders</p>
+
+        <div class="jumbotron" *ngIf='pastOrders && pastOrders.length else noRecent'>
+
+            <div class="container" *ngFor='let order of pastOrders'>
+
+               <app-past-order [order]='order'></app-past-order>
+               
+            </div>
+
+        </div>
+    </div>
+    <ng-template #noRecent>
+        <div class="jumbotron">
+            <div class="max-width mx-auto">
+                <h1 class="display-3">No Orders</h1>
+                <p class="lead">Start Ordering!</p>
+                <hr class="my-2">
+                <p>Thanks for being our valuable Customer</p>
+            </div>
+        </div>
+    </ng-template>
+</section>

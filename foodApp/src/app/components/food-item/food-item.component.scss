@@ -1,0 +1,61 @@
+@import '../../../scss_variables.scss';
+
+.rest-menu-div{
+    .rest-menu-image img{
+        height: 20vh;
+        width: 100%;
+        min-height: 200px;
+        max-width: 300px;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+    .rest-menu-content-subdiv1{  
+            .type-icon{
+                width: 20px;
+                height: 20px;
+            }
+            h1{
+                font-size: x-large;
+                font-weight: 400;
+                color: $color-black;
+            }
+            h2, h3{
+                font-size: medium;
+                font-weight: 200;
+            }
+            p{
+                font-size: medium;
+                font-weight: 200;
+            }
+    }
+    .add-to-cart-button{
+        border-radius: 8px;
+        color: $card-btn-red;
+        border: 1px solid $card-btn-red;
+    }
+    .rest-menu-content-subdiv2{  
+        .cart-qty-button{
+            border-radius: 8px;
+            color: $card-btn-red;
+            border: 1px solid $card-btn-red;
+            padding: 0 4px;
+            font-size: medium;
+        }
+    }   
+
+}
+
+::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content{
+    line-height: 34px;
+}
+
+::ng-deep .cart-count-item .mat-button-toggle-label-content {
+    cursor: default;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+$enable-responsive-font-sizes : true;
+
+@import '../../../scss_variables.scss';
+section{
+    .jumbotron{
+      max-height: 70vh;
+      overflow: auto;
+      background-image: url("../../../assets/images/doodle_2.jpg");
+      background-size: cover;
+      background-blend-mode: lighten;
+      mat-card{
+        background-color: $color-white;
+        color: $color-black;
+
+        .cost{
+          text-align: center;
+
+        }
+      }
+    }
+  }
+
+  #active-orders > .jumbotron{
+      background-color: $bg-color-jumbotron;
+      background-image: none;
+    }
+
+
+.shadow-box{
+    -webkit-box-shadow: 14px 11px 20px -6px $shadow-color-black;
+    -moz-box-shadow: 14px 11px 20px -6px $shadow-color-black;
+    box-shadow: 14px 11px 20px -6px $shadow-color-black;
+}
+
+
+.font-color-red{
+    color: $theme-red;
+}
+
+.bg-color-redLight{
+    background-color: $theme-red ;
+}
+
+  .heading-6{
+      font-size: 6vw;
+  }
+
+
+  .div-animate-left{
+    position: relative;
+    animation: animateleft 1s;
+} @keyframes animateleft{
+    from{
+        left: -300px;
+        opacity: 0;
+    } to{
+        left: 0;
+        opacity: 1;
+    }
+}
+
+

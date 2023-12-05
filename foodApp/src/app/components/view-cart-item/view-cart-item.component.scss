@@ -1,0 +1,32 @@
+@import '../../../scss_variables.scss';
+.veg-icon{
+    height: 15px;
+    width: 15px;
+}
+
+.cart-qty-button{
+    border-radius: 8px;
+    color: $card-btn-red;
+    border: 1px solid $card-btn-red;
+    padding: 0 4px;
+    font-size: medium;
+    max-height: 50px;
+}
+mat-toggle-button{
+    max-height: 30px;
+}
+
+@mixin for-response {
+    @media (min-width: 992px) { @content; }
+  }
+@include for-response{
+
+    .cart-qty-button.col-lg-4{
+        justify-content: center;
+    }
+}
+
+.cart-item-delete-btn{
+    line-height: 40px;
+    cursor: pointer;
+}

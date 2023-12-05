@@ -1,0 +1,252 @@
+<div class="shadow " [ngClass]='currentRoute=="/"?"home-nav":"home-nav-2"'>
+
+  <nav class="max-width h-100 mx-auto navbar navbar-dark navbar-expand-lg   ">
+ 
+    <a class="navbar-brand  nav-icon" href="#">
+
+      <img src="../../../assets/images/logo3.png" class="nav-icon" alt="">
+    </a>
+    <button class="navbar-toggler border border-white" type="button" data-toggle="collapse" data-target="#navbarToogler"
+      aria-controls="navbarToogler" aria-expanded="false" aria-label="Toggle navigation">
+      <mat-icon aria-hidden="false" aria-label="menu icon" class="text-white">menu</mat-icon>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarToogler">
+      <ul class="navbar-nav  mt-2  d-sm-block d-lg-none d-xl-none d-xs-block">
+        <ng-container *ngIf='currentUser==undefined ||currentUser?.role=="user"'>
+          <li class="nav-item card text-center nav-item-button ">
+            <a class="nav-link text-light " routerLink='/'>
+              <mat-icon class='align-middle'>home</mat-icon>
+              home
+            </a>
+          </li>
+          <li class="nav-item card text-center nav-item-button ">
+            <a class="nav-link text-light " routerLink='/restaurants'>
+              <mat-icon class='align-middle'>store</mat-icon>
+
+              All Restaurants
+            </a>
+          </li>
+        </ng-container>
+
+        <ng-container *ngIf='currentUser!=undefined && currentUser?.role!="ro"'>
+          <ng-container *ngIf='currentUser?.role=="user"'>
+            <li class="nav-item card text-center nav-item-button ">
+              <a class="nav-link text-light" routerLink='/usercart'>
+                <mat-icon class='align-middle'>shopping_cart</mat-icon>
+                Cart
+              </a>
+            </li>
+            <li class="nav-item card text-center nav-item-button ">
+              <a class="nav-link text-light" routerLink='/userOrders'>
+                <mat-icon class='align-middle'>receipt_long</mat-icon>
+                your Orders
+              </a>
+            </li>
+          </ng-container>
+          <ng-container *ngIf='currentUser?.role=="de"'>
+            <li class="nav-item card text-center nav-item-button  ">
+              <a class="nav-link text-light" routerLink='/de-dashboard' fragment='incoming-orders'>
+                <mat-icon class='align-middle'>move_to_inbox</mat-icon>
+                Incoming Orders
+              </a>
+            </li>
+            <li class="nav-item card text-center nav-item-button  ">
+              <a class="nav-link text-light" routerLink='/de-dashboard' fragment='active-orders'>
+                <mat-icon class='align-middle'>notification_important</mat-icon>
+                Active Orders
+              </a>
+            </li>
+            <li class="nav-item card text-center nav-item-button  ">
+              <a class="nav-link text-light" routerLink='/de-dashboard' fragment='recent-delivery'>
+                <mat-icon class='align-middle'>cached</mat-icon>
+                Recently
+                Delivered
+              </a>
+            </li>
+           
+          </ng-container>
+          <li class="nav-item dropdown card text-center nav-item-button  ">
+            <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <mat-icon class='align-middle'>account_circle</mat-icon>
+              {{currentUser.firstName}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item p-1 " href="#" routerLink="/profile">
+                <mat-icon class='align-middle'>account_circle</mat-icon>
+                Profile
+              </a>
+              <a class="dropdown-item p-1 " href="#" routerLink="/de-reports" *ngIf='currentUser?.role=="de"'>
+                <mat-icon class="align-middle">article</mat-icon>
+                Reports</a>
+                <a class="dropdown-item p-1 " href="#" routerLink="/user-reports" *ngIf='currentUser?.role=="user"'>
+                  <mat-icon class="align-middle">article</mat-icon>
+                  Reports</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item p-1 " href="#" (click)='logout()'>
+                <mat-icon class='align-middle'>logout</mat-icon>
+                Logout
+              </a>
+            </div>
+
+          </li>
+        </ng-container>
+        <ng-container *ngIf='currentUser==undefined'>
+          <li class="nav-item card text-center nav-item-button  ">
+            <a class="nav-link text-light" (click)='openDialogLogin()'>
+              <mat-icon class='align-middle'>login</mat-icon>
+              Login
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf='currentUser!=undefined && currentUser?.role=="ro"'>
+          <li class="nav-item card text-center nav-item-button  ">
+            <a class="nav-link text-light" (click)='logout()'>
+              <mat-icon class='align-middle'>logout</mat-icon>
+              Logout
+            </a>
+          </li>
+        </ng-container>
+      </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <div class="navbar-collapse collapse .d-none .d-sm-none " id="navbarColor03">
+          <ul class="navbar-nav">
+            <ng-container *ngIf='currentUser==undefined ||currentUser?.role=="user"'>
+
+              <li class="nav-item m-2">
+                <a routerLink='/'>
+                  <button mat-icon-button class="btnColor " data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="Home" aria-label="Home">
+                    <mat-icon>home</mat-icon>
+                  </button>
+                </a>
+              </li>
+              <li class="nav-item m-2">
+
+                <a routerLink='/restaurants'>
+                  <button mat-icon-button class="btnColor " data-bs-toggle="tooltip" data-bs-placement="top"
+                    title="All Restaurants" aria-label="restaurantslist">
+                    <mat-icon>store</mat-icon>
+                  </button>
+                </a>
+              </li>
+            </ng-container>
+
+            <ng-container *ngIf='currentUser!=undefined && currentUser?.role!="ro"'>
+              <ng-container *ngIf='currentUser?.role=="user"'>
+              
+                <li class="nav-item m-2">
+                  <a routerLink='/usercart'>
+                    <button mat-icon-button  class="btnColor" data-bs-toggle="tooltip" data-bs-placement="top"
+                      title="Cart" aria-label="Cart">
+                      <mat-icon [matBadge]='cartItems' matBadgePosition="after" >shopping_cart</mat-icon>
+                    </button>
+                  </a>
+                </li>
+                <li class="nav-item m-2">
+                  <a routerLink='/userOrders'>
+                    <button mat-icon-button class="btnColor" data-bs-toggle="tooltip" data-bs-placement="top"
+                      title="Orders" aria-label="Orders">
+                      <mat-icon>receipt_long</mat-icon>
+                    </button>
+                  </a>
+                </li>
+              </ng-container>
+              <ng-container *ngIf='currentUser?.role=="de"'>
+                <li class="nav-item m-3 text-white h3">
+                  Hi {{currentUser.firstName}},
+                 </li>
+                <li class="nav-item m-2">
+                  <a routerLink='/de-dashboard' fragment='active-orders'>
+                    <button mat-icon-button class="btnColor" data-bs-toggle="tooltip" data-bs-placement="top"
+                      title="Active Orders" aria-label="Active Orders">
+                      <mat-icon>notification_important</mat-icon>
+                    </button>
+                  </a>
+                </li>
+
+
+                <li class="nav-item m-2">
+                  <a routerLink='/de-dashboard' fragment='incoming-orders'>
+                    <button mat-icon-button class="btnColor" data-bs-toggle="tooltip" data-bs-placement="top"
+                      title="Incoming Orders" aria-label="Incoming Orders">
+                      <mat-icon>move_to_inbox</mat-icon>
+                    </button>
+                  </a>
+                </li>
+
+                <li class="nav-item m-2">
+                  <a class="nav-link d-none" href="#">Pricing</a>
+                  <a routerLink='/de-dashboard' fragment='recent-delivery'>
+                    <button mat-icon-button class="btnColor" data-bs-toggle="tooltip" data-bs-placement="top"
+                      title="Recent Deliveries" aria-label="Recent Delivery" >
+                      <mat-icon>cached</mat-icon>
+                    </button>
+                  </a>
+                </li>
+              </ng-container>
+
+              <li class="nav-item dropdown m-2">
+                <a class="nav-link d-none dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                  aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <button mat-icon-button class="btnColor" data-bs-toggle="tooltip" data-bs-placement="top" title="User"
+                  [matMenuTriggerFor]="menu" aria-label="">
+                  <mat-icon>account_circle</mat-icon>
+                </button>
+
+                <mat-menu #menu="matMenu" class="bg-white">
+                  <button mat-menu-item  routerLink="/profile">
+                    <a class="text-decoration-none">
+                      <mat-icon class="text-dark">face</mat-icon>
+                      <span class="text-dark">{{currentUser.firstName}}'s Profile</span>
+                    </a>
+                  </button>
+                  <button mat-menu-item *ngIf='currentUser?.role=="de"' routerLink="/de-reports">
+                    <a  class="text-decoration-none">
+                      <mat-icon class="text-dark">article</mat-icon>
+                      <span class="text-dark">Reports</span>
+                    </a>
+                  </button>
+                  <button mat-menu-item  *ngIf='currentUser?.role=="user"' routerLink="/user-reports">
+                    <a class="text-decoration-none">
+                      <mat-icon class="text-dark">article</mat-icon>
+                      <span class="text-dark">Reports</span>
+                    </a>
+                  </button>
+                  <button mat-menu-item (click)='logout()'>
+                    <a class="text-decoration-none">
+                      <mat-icon class="text-dark">logout</mat-icon>
+                      <span class="text-dark">Log Out</span>
+                    </a>
+                  </button>
+                </mat-menu>
+
+              </li>
+             
+            </ng-container>
+            <ng-container *ngIf='currentUser==undefined'>
+
+              <li class="nav-item m-2 rounded">
+                <button mat-button class="btnColor" (click)='openDialogLogin()'>
+                  <mat-icon>login</mat-icon>
+                  Login
+                </button>
+              </li>
+            </ng-container>
+            <ng-container *ngIf='currentUser!=undefined && currentUser?.role=="ro"'>
+
+              <li class="nav-item m-2 rounded">
+                <button mat-button class="btnColor" (click)='logout()'>
+                  <mat-icon>logout</mat-icon>
+                  Log Out
+                </button>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+</div>

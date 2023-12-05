@@ -1,0 +1,67 @@
+<mat-card class="pt-2 m-4 mt-0 mat-card-content max-width mx-auto " *ngIf="order">
+    <mat-horizontal-stepper labelPosition="bottom" #stepper >
+
+        <mat-step label="Ordered" state="ordered" editable="false" >
+            <div class="text-center">
+                <img src="../../../assets/images/accepted-by-restaurant.png" alt="" class="stepper-img prepared">
+                <span class="ml-3"></span>
+            </div>
+        </mat-step>
+        <mat-step label="Accepted By Restaurant" state="accepted" editable="false" >
+            <div class="text-center">
+                <img src="../../../assets/images/accepted-by-restaurant.png" alt="" class="stepper-img prepared">
+                <span class="ml-3">Yeah Somebody Responded!</span>
+            </div>
+        </mat-step>
+        <mat-step label="Food is being Prepared" state="prepared" editable="false">
+            <div class="text-center">
+                <img src="../../../assets/images/prepared.png" alt=""  class="stepper-img prepared">
+                <span class="ml-3">Your delicacy is being cooked!</span>
+            </div>
+        </mat-step>
+        <mat-step label="Picked-Up" state="picked" editable="false">
+            <div class="text-center">
+                <img src="../../../assets/images/picked.png" alt="" class="stepper-img prepared">
+                <span class="ml-3">Wohooo! Our Delivery Executive picked your order.</span>
+            </div>
+        </mat-step>
+        <mat-step label="Out-for-Delivery" state="out" editable="false">
+            <div class="text-center">
+                <img src="../../../assets/images/out-for-delivery.png" alt="" class="stepper-img prepared">
+                <span class="ml-3">Brace yourself it's on the way!</span>
+            </div>
+        </mat-step>
+
+        <ng-template matStepperIcon="phone">
+            <mat-icon>call_end</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="chat">
+            <mat-icon>forum</mat-icon>
+        </ng-template>
+    </mat-horizontal-stepper>
+    <div class="row">
+        <div class="col-3">
+            <img src="../../../assets/images/carousel1.jpg" alt="" class="restaurant-img">
+        </div>
+        <div class="col-9">
+            <div class="row justify-content-between">
+                <div class="col-xs-1-12 pl-5 pt-3 lead">
+                    {{order.restaurantDetails.restaurantName}}
+                </div>
+            </div>
+            <div class="row ">
+                <p class="pl-5">{{order.restaurantDetails.restaurantLocation.area}}, {{order.restaurantDetails.restaurantLocation.city}}</p>
+            </div>
+            <div class="row mt-2">
+                <p class="pl-5 font-weight-bold"><span class="symbol">₹</span> {{order.totalAmount}}</p>
+            </div>
+        </div>
+    </div>
+    <hr class="dotted">
+    <div class="row mt-2" *ngFor='let foodItem of order.foodList'>
+        <p class="pl-5 mb-0 pb-0">{{foodItem.foodItem.foodName}}<span class="symbol"> x </span> {{foodItem.quantity}}</p>
+    </div>
+    <div class="row pt-1 text-muted">
+        <p class="pl-5">{{order.orderDateAndTime | date:'medium'}}</p>
+    </div>
+</mat-card>

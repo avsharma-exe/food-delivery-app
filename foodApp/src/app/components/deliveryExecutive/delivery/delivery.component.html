@@ -1,0 +1,292 @@
+
+<section id="incoming-orders">
+  <div class="max-width mx-auto">
+    <p class="display-4 theme-color mt-5 ml-5 heading ">Incoming Orders</p>
+    <p class="text-success mt-5 ml-5 h4 ">* You have  {{this.Ocount}} Incoming Deliveries. * <span *ngIf = "Ocount else noOrders" class="ml-3 theme-color h4" > Start Accepting...!! </span> <ng-template #noOrders> <span class="ml-3 theme-color h4" > Take a Break now..!!</span> </ng-template> </p>
+  </div>
+  <hr>
+  <div class="jumbotron pt-0 pb-0 bg-transparent" *ngIf="orders && orders.length else loading">
+    <mat-card class="pt-2 m-4 mt-0 mat-card-content max-width mx-auto" *ngFor="let order of orders">
+      <div class="row">
+        <div class="col-md-2 col-lg-2 d-none d-md-block d-xl-block">
+          <span class="material-icons display-3">
+            delivery_dining
+          </span>
+        </div>
+        <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 p-3">
+          <div class="row ">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 h5 theme-color">
+              OrderId-
+            </div>
+            <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12 mb-3">
+              <div class="lead pb-2"> {{order._id}}
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 h5 theme-color">
+              PickUp-
+            </div>
+            <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12 mb-3">
+              <div class="lead pb-2"> {{order.restaurantDetails.restaurantName}}
+                <span class="text-muted font-weight-bold border-dark">PinCode - </span>
+                <span class="h5">{{order.restaurantDetails.restaurantLocation.zip}}</span>
+              </div>
+              <div class="text-muted h5"> {{order.restaurantDetails.restaurantLocation.area}} <span>(Locality)</span>
+              </div>
+              <div class="lead"> {{order.restaurantDetails.restaurantLocation.landmark}}
+                <span>(Landmark)</span>
+              </div>
+            </div>
+          </div>
+          <div class="row ">
+            <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 h5 theme-color">
+              Drop-
+            </div>
+            <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+              <div class="lead pb-2">
+                <p class="font-weight-bold">{{order.customerName}}</p>
+                {{order.orderLocation.streetAddress}}
+                <span class="text-muted font-weight-bold border-dark">PinCode - </span>
+                <span class="h5">{{order.orderLocation.streetAddress}}</span>
+              </div>
+              <div class="text-muted h5"> {{order.orderLocation.area}} <span>(Locality)</span> </div>
+              <div class="lead"> {{order.orderLocation.landmark}} <span>(Landmark)</span> </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-lg-3 col-sm-12 col-xs-12">
+          <p class="lead font-weight-bold p-3">COST -
+            <span class="lead font-weight-bold text-dark">{{order.totalAmount}}</span><span>Rs</span>
+          </p>
+        </div>
+      </div>
+      <mat-card-actions class="text-right p-4">
+        <button mat-raised-button class="accept-button"
+          (click)="acceptOrder(order._id,order.userId.email)">Accept</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <ng-template #loading>
+    <div class="jumbotron">
+      <div class="max-width mx-auto">
+        <h1 class="display-3">No Incoming Orders</h1>
+        <p class="lead">Keep Checking</p>
+        <hr class="my-2">
+        <p>Thanks for being our valuable Executive</p>
+      </div>
+    </div>
+  </ng-template>
+</section>
+<section class="bg-white">
+  <section id="active-orders">
+    <hr>
+    <div class="max-width mx-auto">
+      <p class="display-4 theme-color mt-5 ml-5 heading"> Active Orders </p>
+    </div>
+    <hr>
+    <div class="jumbotron pt-0 mt-0 bg-doodle" *ngIf="activeOrders && activeOrders.length else loadingActive">
+      <mat-card class="pt-2 m-4 mt-0 mat-card-content max-width mx-auto" *ngFor="let aorder of activeOrders">
+        <div class="row">
+          <div class="col-md-2 col-lg-2 d-none d-md-block d-xl-block">
+            <span class="material-icons display-3">
+              directions_bike
+            </span>
+          </div>
+
+          <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 p-3">
+            <div class="row mb-3">
+              <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12 h6 font-color-red">
+                Order Id -
+              </div>
+              <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                <div class="lead pb-2"> {{aorder._id}}
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12 h6 font-color-red">
+                Pick Up -
+              </div>
+              <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12 mb-3">
+                <div class="lead pb-2"> {{aorder.restaurantDetails.restaurantName}}
+                  <span class="text-muted font-weight-bold border-dark">PinCode - </span>
+                  <span class="h5">{{aorder.restaurantDetails.restaurantLocation.zip}}</span>
+                </div>
+                <div class="text-muted h5"> {{aorder.restaurantDetails.restaurantLocation.area}}
+                  <span>(Locality)</span>
+                </div>
+                <div class="lead"> {{aorder.restaurantDetails.restaurantLocation.landmark}}
+                  <span>(Landmark)</span>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12 h6 font-color-red">
+                Drop -
+              </div>
+              <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                <div class="lead pb-2">
+                  <p class="font-weight-bold">Name - {{aorder.userId.firstName}}
+                    | Contact -{{aorder.userId.mobileNumber}}</p>
+                  {{aorder.orderLocation.streetAddress}}
+                  <span class="text-muted font-weight-bold border-dark">PinCode - </span>
+                  <span class="h5">{{aorder.orderLocation.streetAddress}}</span>
+                </div>
+                <div class="text-muted h5"> {{aorder.orderLocation.area}} <span>(Locality)</span> </div>
+                <div class="lead"> {{aorder.orderLocation.landmark}} <span>(Landmark)</span> </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 col-lg-3 col-sm-2 col-xs-12">
+            <p class="lead font-weight-bold p-3">
+              COST - <span class="lead font-weight-bold h1 text-danger">{{aorder.totalAmount}} </span><span>Rs</span>
+            </p>
+          </div>
+        </div>
+        <form [formGroup]="statusForm" (ngSubmit)="change(aorder._id,aorder.userId.email,aorder.restaurantDetails.restaurantName,
+        aorder.totalAmount,aorder.orderOtp)">
+          <mat-card-actions>
+            <mat-form-field class="bg-success card ml-3">
+              <mat-label class="text-white p-3 h5">Order status</mat-label>
+              <mat-select class="p-2" formControlName='selected'>
+
+                <ng-container *ngIf='aorder.orderStatus=="accepted-de"'>
+                  <mat-option value="pickedup" class="bg-white text-dark">Picked Up</mat-option>
+                  <mat-option value="ontheway" class="bg-white text-dark">On The Way</mat-option>
+                  <mat-option value="delivered" class="bg-white text-dark">Delivered</mat-option>
+                </ng-container>
+
+                <ng-container *ngIf='aorder.orderStatus=="Picked-up"'>
+                  <mat-option value="ontheway" class="bg-white text-dark">On The Way</mat-option>
+                  <mat-option value="delivered" class="bg-white text-dark">Delivered</mat-option>
+                </ng-container>
+
+                <ng-container *ngIf='aorder.orderStatus=="On-the-Way"'>
+                  <mat-option value="delivered" class="bg-white text-dark">Delivered</mat-option>
+                </ng-container>
+
+              </mat-select>
+            </mat-form-field>
+            <button mat-raised-button class="btn btn-lg bg-danger text-white"> Confirm </button>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </div>
+    <ng-template #loadingActive>
+      <div class="jumbotron">
+        <div class="max-width mx-auto">
+          <h1 class="display-3">No Active Orders</h1>
+          <p class="lead">Start Accepting</p>
+          <hr class="my-2">
+          <p>Thanks for being our valuable Executive</p>
+        </div>
+      </div>
+    </ng-template>
+
+
+  </section>
+</section>
+
+<br><br>
+
+
+<section id="recent-delivery">
+  <div class="container-fluid bg-color-redLight p-3">
+    <div>
+      <p class="display-4 text-light ml-5 heading max-width mx-auto"> Recent Deliveries</p>
+      <hr class="bg-light">
+      <div class="container" *ngIf="recentOrders && recentOrders.length else loadingRecent">
+        <mat-card class="pt-2 m-4 mt-0 mat-card-content shadow-box recent-delivery" *ngFor="let rorder of recentOrders">
+          <div class="row">
+            <div class="col-md-2 col-lg-2 d-none d-md-block d-xl-block">
+              <span class="material-icons display-3">
+                brunch_dining
+              </span>
+            </div>
+
+            <div class="col-md-7 col-lg-7 col-sm-12 col-xs-12 p-3">
+              <div class="row mb-3">
+                <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12 h6 font-color-red">
+                  Order Id-
+                </div>
+                <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                  <div class="lead pb-2"> {{rorder._id}}
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12 h6 font-color-red">
+                  Pick Up -
+                </div>
+                <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                  <div class="lead pb-2"> {{rorder.restaurantDetails.restaurantName}}
+                    <span class="text-muted font-weight-bold border-dark"> pincode- </span>
+                    <span class="h5"> {{rorder.restaurantDetails.restaurantLocation.zip}}</span>
+                  </div>
+                  <div class="text-muted h5"> {{rorder.restaurantDetails.area}}
+                    <span>(Locality)</span>
+                  </div>
+                  <div class="lead"> {{rorder.restaurantDetails.landmark}}
+                    <span>(Landmark)</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-md-2 col-lg-2 col-sm-2 col-xs-12 h6 font-color-red">
+                  Drop -
+                </div>
+                <div class="col-md-10 col-lg-10 col-sm-12 col-xs-12">
+                  <div class="border-dark mb-2 h5"> {{rorder.customerName}} </div>
+                  <div class="lead pb-2"> {{rorder.orderLocation.streetAddress}}
+                    <span class="text-muted font-weight-bold border-dark"> pincode- </span>
+                    <span class="h5"> {{rorder.orderLocation.streetAddress}}</span>
+                  </div>
+                  <div class="text-muted h5"> {{rorder.orderLocation.area}} <span>(Locality)</span></div>
+                  <div class="lead"> {{rorder.orderLocation.landmark}} <span>(Landmark)</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-2 col-xs-12">
+              <p class="lead font-weight-bold p-3">
+                COST - <span class="lead font-weight-bold h1 text-danger">{{rorder.totalAmount}}
+                </span><span>Rs</span>
+              </p>
+            </div>
+          </div>
+
+        </mat-card>
+      </div>
+    </div>
+    <ng-template #loadingRecent>
+      <div class="jumbotron">
+        <div class="max-width mx-auto">
+          <h1 class="display-3">No Recent Orders</h1>
+          <p class="lead">Complete above deliveries. If not then accept some orders!</p>
+          <hr class="my-2">
+          <p>Thanks for being our valuable Executive</p>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</section>
+<ng-template #orderLimit>
+  <h1>Can't accept more than 3 orders at a time..</h1>
+</ng-template>
+<ng-template #success>
+  <h1>Success</h1>
+</ng-template>
+<ng-template #error>
+  <h1>Incorrect OTP</h1>
+</ng-template>
+<ng-template #otp>
+  <p class="lead">
+      Enter the OTP
+  </p>
+  <ng-otp-input (onInputChange)="onOtpChange($event)" [config]="{length:4,allowNumbersOnly:true}"></ng-otp-input>
+  <!-- <button mat-raised-button class="accept-button"
+  (click)="onOtpChange($event)">Check</button> -->
+</ng-template>
+

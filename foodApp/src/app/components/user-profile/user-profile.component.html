@@ -1,0 +1,301 @@
+
+ <div class="container-fluid mt-4 bg-danger mb-5">
+    <div class="row d-flex">
+      <div class=" flex-column p-3 mt-3 align-items-center header-1-section text-center img-animate bg-danger div-animate-left col-sm-12 col-md-5 col-lg-4">
+
+        <img *ngIf = "userRole == 'user' && usrgender == 'female' " src="../../../assets/user-woman.svg" alt="Admin" class="img-size mt-3">
+        <img *ngIf = "userRole == 'user' && usrgender == 'male'" src="../../../assets/user.svg" alt="Admin" class="img-size mt-3">
+         <img *ngIf = "userRole == 'de'  " src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="img-size mt-3">
+
+
+        <div class="user-static-card text-light mt-4" *ngIf = "userdata">
+            <p id= "username-static" class="username-static p-2">{{userdata.firstName  + " " +  userdata.lastName}}</p>
+
+                <div class="row text-center justify-content-center" *ngIf = "userRole == 'de'">
+                    <mat-icon class="text-warning h1 "> grade  </mat-icon>
+                    <h1 class="pl-3 mt-2"> {{ this.deRatings}} / 5 </h1>
+                </div>
+
+         </div>
+       </div>
+    <div class=" col-md-7 col-lg-9 col-sm-12 pt-2 header-2-section div-animate-right bg-gray ">
+
+        <div class="ml-6  form-div"  *ngIf = "userdata" >
+ <!-- ------------------------------ user Form ---------------------------------------------------             -->
+
+            <form  [formGroup]="userprofileForm" class="mt-2"
+                 (ngSubmit)="userprofileForm.valid && sendUserProfile()" *ngIf ="userRole == 'user' " >
+                    <div class="row ml-5 custom-padding" >
+                        <span class="lead col-md-3 "></span>
+                        <mat-form-field appearance="outline" class="col-md-9 ">
+                        <mat-label class="text-danger">First Name</mat-label>
+                        <input matInput  formControlName="firstNameUser"  required placeholder="Firstname">
+                        </mat-form-field>
+                    </div>
+                        <!-- Validation Error div for first name -->
+                    <div class="row justify-content-end custom-padding" >
+                        <span class="col-md-3"></span>
+                        <div class=" ml-5  col-md-9  alert alert-light " *ngIf="firstNameUser.invalid && (firstNameUser.dirty || firstNameUser.touched)">
+                                <div *ngIf="firstNameUser.errors.required" class="text-danger font-weight-bold h6">
+                                First Name is required* .
+                                </div>
+                        </div>
+                      </div>
+
+                    <div class="row  ml-5 custom-padding " >
+                        <span class="col-md-3 "></span>
+                        <mat-form-field appearance="outline" class="col-md-9">
+                            <mat-label class="text-danger">Last Name</mat-label>
+                            <input matInput formControlName="lastNameUser" required placeholder="lastname">
+                        </mat-form-field>
+                    </div>
+                      <!-- Validation Error div for last name -->
+                    <div class="row justify-content-end custom-padding" >
+                      <span class="col-md-3"></span>
+                      <div class=" ml-5  col-md-9  alert alert-light " *ngIf="lastNameUser.invalid && (lastNameUser.dirty || lastNameUser.touched)">
+                              <div *ngIf="lastNameUser.errors.required" class="text-danger font-weight-bold h6">
+                              Last Name is required* .
+                              </div>
+                      </div>
+                    </div>
+
+
+                      <div class="row  ml-5 custom-padding "  >
+                          <span class="col-md-3 "></span>
+                          <mat-form-field appearance="outline" class="col-md-9">
+                              <mat-label class="text-danger">Email</mat-label>
+                              <input matInput type="email" formControlName="emailUser" required readonly placeholder="email" class="opacityBtn">
+                              <mat-icon matSuffix>email</mat-icon>
+                          </mat-form-field>
+                    </div>
+                      <!-- Validation Error div for email -->
+                    <div class="row justify-content-end custom-padding" >
+                      <span class="col-md-3"></span>
+                      <div class=" ml-5  col-md-9  alert alert-light " *ngIf="emailUser.invalid && (emailUser.dirty || emailUser.touched)">
+                              <div *ngIf="emailUser.errors.required" class="text-danger font-weight-bold h6r">
+                              Email is required* .
+                              </div>
+                              <div *ngIf="emailUser.errors.email" class="text-danger font-weight-bold h6r">
+                                Please Enter email in format* .
+                              </div>
+                      </div>
+                    </div>
+
+                    <div class="row  ml-5 custom-padding" >
+                        <span class="lead col-md-3"></span>
+                        <mat-form-field appearance="outline" class="col-md-9">
+                            <mat-label class="text-danger">Mobile Number</mat-label>
+                            <input matInput type="number" formControlName="mobileNumberUser" required placeholder="mobile number">
+                            <mat-icon matSuffix>dialpad</mat-icon>
+                        </mat-form-field>
+                      </div>
+                      <div class="row justify-content-end custom-padding"  >
+                        <span class="col-md-3"></span>
+                        <div class=" ml-5  col-md-9  alert alert-light " *ngIf="mobileNumberUser.invalid && (mobileNumberUser.dirty || mobileNumberUser.touched)">
+                                <div *ngIf="mobileNumberUser.errors.required" class="text-danger font-weight-bold h6">
+                                Mobile Number is required* .
+                                </div>
+                                <div *ngIf="mobileNumberUser.errors.pattern" class="text-danger font-weight-bold h6">
+                                  Please Enter 10 Digit Number* .
+                                </div>
+                        </div>
+                      </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-lg btn-danger p-2 m-2 " value="Submit">Submit</button>
+                    </div>
+            </form>
+
+ <!------------------------------------- Delivery User Form ------------------------------------------------------------------ -->
+
+                <form  [formGroup]="profileForm" class="mt-2"
+                (ngSubmit)="profileForm.valid && sendDeProfile()" *ngIf="userRole == 'de' ">
+
+                        <div class="row ml-5 custom-padding" >
+                              <span class="lead col-md-3 "></span>
+                              <mat-form-field appearance="outline" class="col-md-9 ">
+                                <mat-label class="text-danger">First Name</mat-label>
+                                <input matInput  formControlName="firstName"  required placeholder="Firstname">
+                              </mat-form-field>
+                          </div>
+                          <!-- Validation Error div for first name -->
+                          <div class="row justify-content-end custom-padding" >
+                            <span class="col-md-3"></span>
+                            <div class=" ml-5  col-md-9  alert alert-light " *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                                    <div *ngIf="firstName.errors.required" class=" text-danger font-weight-bold h6">
+                                    First Name is required* .
+                                    </div>
+                              </div>
+                          </div>
+
+
+                          <div class="row  ml-5 custom-padding " >
+                              <span class="col-md-3 "></span>
+                              <mat-form-field appearance="outline" class="col-md-9">
+                                  <mat-label class="text-danger">Last Name</mat-label>
+                                  <input matInput formControlName="lastName" required placeholder="lastname">
+                              </mat-form-field>
+                          </div>
+                            <!-- Validation Error div for last name -->
+                          <div class="row justify-content-end custom-padding" >
+                            <span class="col-md-3"></span>
+                            <div class=" ml-5  col-md-9  alert alert-light " *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                                    <div *ngIf="lastName.errors.required" class="text-danger font-weight-bold h6">
+                                    Last Name is required* .
+                                    </div>
+                            </div>
+                          </div>
+
+
+                            <div class="row  ml-5 custom-padding "  >
+                                <span class="col-md-3 "></span>
+                                <mat-form-field appearance="outline" class="col-md-9">
+                                    <mat-label class="text-danger">Email</mat-label>
+                                    <input matInput type="email" formControlName="email" required readonly placeholder="email" class="opacityBtn">
+                                    <mat-icon matSuffix>email</mat-icon>
+                                </mat-form-field>
+                          </div>
+                            <!-- Validation Error div for email -->
+                          <div class="row justify-content-end custom-padding" >
+                            <span class="col-md-3"></span>
+                            <div class=" ml-5  col-md-9  alert alert-light " *ngIf="email.invalid && (email.dirty || email.touched)">
+                                    <div *ngIf="email.errors.required" class="text-danger font-weight-bold h6r">
+                                    Email is required* .
+                                    </div>
+                                    <div *ngIf="email.errors.email" class="text-danger font-weight-bold h6r">
+                                      Please Enter email in format* .
+                                    </div>
+                            </div>
+                          </div>
+
+
+                          <div class="row ml-5 custom-padding" >
+                            <span class="col-md-3 "></span>
+                            <mat-form-field appearance="outline" class="col-md-9">
+                            <mat-label class="text-danger">Vehicle Number</mat-label>
+                            <input matInput formControlName="vehicleNumber" required>
+                            <mat-icon matSuffix>two_wheeler</mat-icon>
+                          </mat-form-field>
+                          </div>
+                            <!-- Validation Error div for vehicle Number -->
+                          <div class="row justify-content-end custom-padding" >
+                            <span class="col-md-3"></span>
+                            <div class=" ml-5  col-md-9  alert alert-light bg-outline-danger " *ngIf="vehicleNumber.invalid && (vehicleNumber.dirty || vehicleNumber.touched)">
+                                    <div *ngIf="vehicleNumber.errors.required" class=" text-danger font-weight-bold h6">
+                                    Vehicle Number is required* .
+                                    </div>
+                            </div>
+                          </div>
+
+
+                          <div class="row  ml-5 custom-padding" >
+                            <span class="lead col-md-3"></span>
+                            <mat-form-field appearance="outline" class="col-md-9">
+                                <mat-label class="text-danger">Mobile Number</mat-label>
+                                <input matInput type="number" formControlName="mobileNumber" required placeholder="mobile number">
+                                <mat-icon matSuffix>dialpad</mat-icon>
+                            </mat-form-field>
+                          </div>
+                            <!-- Validation Error div for mobile Number -->
+                          <div class="row justify-content-end custom-padding"  >
+                            <span class="col-md-3"></span>
+                            <div class=" ml-5  col-md-9  alert alert-light " *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)">
+                                    <div *ngIf="mobileNumber.errors.required" class="text-danger font-weight-bold h6">
+                                    Mobile Number is required* .
+                                    </div>
+                                    <div *ngIf="mobileNumber.errors.pattern" class="text-danger font-weight-bold h6">
+                                      Please Enter 10 Digit Number* .
+                                    </div>
+                            </div>
+                          </div>
+
+
+                          <div class="row  ml-5 custom-padding " >
+                            <span class="col-md-3 "></span>
+                            <mat-form-field appearance="outline" class="col-md-9">
+                              <mat-label class="text-danger">Street address</mat-label>
+                              <input matInput formControlName="streetAddress">
+                              <mat-icon matSuffix>place</mat-icon>
+                            </mat-form-field>
+                        </div>
+
+
+                          <div class="row  ml-5 custom-padding" >
+                            <span class="lead col-md-3"></span>
+                            <mat-form-field appearance="outline" class="col-md-4">
+                                <mat-label class="text-danger">Pincode</mat-label>
+                                <input matInput type="number" formControlName="pincode" required  >
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="col-md-5">
+                              <mat-label class="text-danger">City/Town/District</mat-label>
+                              <input matInput type="text" formControlName="city">
+                          </mat-form-field>
+                          </div>
+                      <!-- Validation Error div for Pincode -->
+                          <div class="row justify-content-end custom-padding" >
+                            <span class="col-md-3"></span>
+                            <div class=" ml-5  col-md-9  alert alert-light " *ngIf="pincode.invalid && (pincode.dirty || pincode.touched)">
+                                    <div *ngIf="pincode.errors.required" class="text-danger font-weight-bold h6">
+                                      Pincode is Needed.
+                                    </div>
+                                    <div *ngIf="pincode.errors.pattern" class="text-danger font-weight-bold h6">
+                                      Please enter valid 6 digit Pincode
+                                    </div>
+                            </div>
+                          </div>
+
+
+                          <div class="row  ml-5 custom-padding " >
+                            <span class="col-md-3 "></span>
+                            <mat-form-field appearance="outline" class="col-md-4">
+                              <mat-label class="text-danger">State</mat-label>
+                              <input matInput formControlName="state">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="col-md-5">
+                              <mat-label class="text-danger">Country</mat-label>
+                              <input matInput formControlName="country">
+                            </mat-form-field>
+                          </div>
+
+                          <div class="row  ml-5 custom-padding ">
+                            <span class="col-md-3 "></span>
+                            <mat-form-field appearance="outline" class="col-md-4">
+                              <mat-label class="text-danger">Landmark</mat-label>
+                              <input matInput formControlName="landmark">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="col-md-5">
+                              <mat-label class="text-danger">Locality</mat-label>
+                              <input matInput formControlName="area">
+                            </mat-form-field>
+                          </div>
+
+                        <!-- submit data button  -->
+                          <div>
+                              <button type="submit" class="btn btn-lg btn-danger p-2 m-2 " value="Submit">Submit</button>
+                          </div>
+
+                </form>
+          </div>
+
+          <ng-template #notuserdata>
+                <div class="row">
+                  <span class="col-md-6"></span>
+                  <div class=" col jumbotron card bg-light user-static-card p-5 mt-5">
+                    <img src="../../../../assets/images/oops.png" alt="">
+                    <hr>
+                    <h2 class="text-center font-weight-bold">
+                      You are not Logged In ! <br >Login first to view your details.
+                    </h2>
+                </div>
+              </div>
+          </ng-template>
+<!-- --------------------------------- -->
+
+<!----------------------Dialog Template-->
+<ng-template #dataUpdated>
+  <h1>Data Updated Successfully</h1>
+</ng-template>
+
+    </div>
+   </div>
+</div>

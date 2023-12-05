@@ -1,0 +1,30 @@
+<button mat-button class="card-clickable" *ngIf='restaurant!=undefined' routerLink='/restaurant/{{restaurant._id}}'>
+
+    <mat-card *ngIf='restaurant!=undefined' class="restaurant-card text-left">
+        <img mat-card-image class="dish-image shadow-lg  overflow-hidden" [src]='restaurant.restaurantImages[0]'
+        onerror="this.src='../../../assets/images/image-not-found.jpeg'" alt="oops">
+        <mat-card-content>
+
+            <mat-card-title>{{restaurant?.restaurantName}}</mat-card-title>
+            <mat-card-subtitle class="d-flex mb-0 justify-content-between"
+                *ngIf='restaurant.restaurantRatings!=null || restaurant.restaurantRatings!=undefined'>
+                <div class="d-flex justify-content-between w-100">
+                    <div class="d-flex">
+
+                        <mat-icon aria-hidden="false" class="text-white bg-warning">star</mat-icon>
+                        <h3 class="rating ml-1 mb-0"><strong>{{restaurant?.rating_avg?.toFixed(1)}}
+                            </strong>({{restaurant?.restaurantRatings?.length}}) </h3>
+                    </div>
+                    <div class="pt-1">
+                        <mat-card-subtitle class="text-wrap text-right">{{restaurant?.restaurantLocation?.landmark+',
+                            '+restaurant?.restaurantLocation?.city}}</mat-card-subtitle>
+                    </div>
+                </div>
+            </mat-card-subtitle>
+
+            <mat-card-subtitle class=" text-wrap overflow-hidden">
+                {{restaurant?.restaurantCategory?.join(', ')}}
+            </mat-card-subtitle>
+        </mat-card-content>
+    </mat-card>
+</button>

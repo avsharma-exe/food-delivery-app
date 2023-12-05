@@ -1,0 +1,43 @@
+<section>
+    <div class="container">
+        <p class="display-4 theme-color ml-5 heading">Top rated restaurants</p>
+        <div class="jumbotron jumbotron" *ngIf="resRating && resRating.length else noRating">
+            <div class="container">
+                <canvas baseChart [datasets]="ratingChartData" [labels]="ratingChartLabels"
+                    [options]="ratingChartOptions" [legend]="ratingChartLegend" [chartType]="ratingChartType"
+                    width="200" height="50">
+                </canvas>
+                <button mat-button mat-raised-button color="primary" (click)="randomizeRating()">Toggle</button>
+            </div>
+        </div>
+    </div>
+    <ng-template #noRating>
+        <div class="jumbotron">
+            <h1 class="display-3">No Ratings</h1>
+            <p class="lead">Complete more deliveries.</p>
+            <hr class="my-2">
+            <p>Thanks for being our valuable Executive</p>
+        </div>
+    </ng-template>
+</section>
+<section>
+    <div class="container">
+        <p class="display-4 theme-color ml-5 heading">Highly ordered restaurants</p>
+        <div class="jumbotron jumbotron" *ngIf="resOrderCount && resOrderCount.length else noOrders">
+            <div class="container">
+                <canvas baseChart [datasets]="orderChartData" [labels]="orderChartLabels" [options]="orderChartOptions"
+                    [legend]="orderChartLegend" [chartType]="orderChartType" width="200" height="50">
+                </canvas>
+                <button mat-button mat-raised-button color="primary" (click)="randomizeOrder()">Toggle</button>
+            </div>
+        </div>
+        <ng-template #noOrders>
+            <div class="jumbotron">
+                <h1 class="display-3">No Delivered Orders</h1>
+                <p class="lead">Complete more deliveries.</p>
+                <hr class="my-2">
+                <p>Thanks for being our valuable Executive</p>
+            </div>
+        </ng-template>
+    </div>
+</section>

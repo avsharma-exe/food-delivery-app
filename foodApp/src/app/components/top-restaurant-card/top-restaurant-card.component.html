@@ -1,0 +1,23 @@
+
+<button mat-button class="card-clickable h-100" *ngIf='restaurant!=undefined'  routerLink='/restaurant/{{restaurant._id}}'>
+    <mat-card class="restaurant-card h-100 shadow text-left ">
+        <img mat-card-image [src]='restaurant.restaurantImages[0]' onerror="this.src='../../../assets/images/image-not-found.jpeg'" alt="oops.">
+        <mat-card-content>
+          <h1 class="text-wrap">{{restaurant.restaurantName}}</h1>
+          <mat-card-subtitle>
+            <div class="d-flex justify-content-between">
+              <div class="d-flex">
+                <mat-icon aria-hidden="false" class="text-white bg-warning">star</mat-icon>
+                <h3 class="rating ml-1" *ngIf="restaurant?.restaurantRatings"><strong>{{restaurant?.rating_avg?.toFixed(1)}} </strong>({{restaurant?.restaurantRatings?.length}}) </h3>
+              </div>
+              <div class="pt-1">
+                <mat-card-subtitle class="text-wrap font-muted font-italic text-right subtitle">{{restaurant?.restaurantLocation?.landmark+', '+restaurant?.restaurantLocation?.city}}</mat-card-subtitle>
+              </div>
+            </div>
+            <div>
+              <mat-card-subtitle class=" text-wrap font-muted font-italic overflow-hidden subtitle">{{restaurant?.restaurantCategory?.join(', ')}}</mat-card-subtitle>
+            </div>
+          </mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+    </button>

@@ -1,0 +1,32 @@
+<button mat-button class="card-clickable" *ngIf='foodItem!=undefined'
+  routerLink='/restaurant/{{foodItem.restaurantId}}'>
+
+  <mat-card *ngIf=' foodItem!=undefined' class="top-food-card text-left">
+    <img mat-card-image if class="dish-image shadow-lg  overflow-hidden" [src]='foodItem.food.foodImage'
+      onerror="this.src='../../../assets/images/image-not-found.jpeg'" alt="Image NOt Found">
+
+    <mat-card-content>
+      <div class="d-flex justify-content-between">
+
+        <mat-card-title>{{foodItem.food.foodName}}</mat-card-title>
+  
+        <img *ngIf="foodItem.food.foodType==='veg'" src="../../../assets/images/veg-icon.png" class="type-icon"
+          alt='' />
+        <img *ngIf="foodItem.food.foodType==='non veg'" src="../../../assets/images/non-veg-icon.png" class="type-icon"
+          alt='' />
+      </div>
+
+      <mat-card-subtitle class="d-flex mb-0">
+        <ng-container *ngIf='foodItem.food.foodRating!=undefined && foodItem.food.foodRating.length>0'>
+          <mat-icon aria-hidden="false" class="text-white bg-warning">star</mat-icon>
+          <h3 class="rating ml-1 mb-0"><strong>{{foodItem?.avgRating?.toFixed(1)}}
+            </strong>({{foodItem?.food?.foodRating?.length}}) </h3>
+        </ng-container>
+      </mat-card-subtitle>
+      <mat-card-subtitle class=" text-wrap overflow-hidden">
+        {{foodItem?.food?.foodCategory?.join(', ')}}
+      </mat-card-subtitle>
+
+    </mat-card-content>
+  </mat-card>
+</button>

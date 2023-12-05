@@ -1,0 +1,9 @@
+<section class="rating-dialog">
+    <h1 class="text-secondary">Tap To Rate Your Experience</h1>
+    <star-rating class="d-flex justify-content-center mt-3" [value]=0 [totalstars]=5 checkedcolor="orangered" uncheckedcolor="lightgrey" size="40px"
+        [readonly]="false" (rate)="onRate($event)"></star-rating>
+    <div class="d-flex justify-content-center">
+        <button mat-button mat-dialog-close class="text-white mr-3 mt-3 add-rating-btn">Cancel</button>
+        <button mat-button  class="bg-success text-white ml-2 mt-3" (click)='applyRating()'>Apply Rating</button>
+    </div>
+</section>

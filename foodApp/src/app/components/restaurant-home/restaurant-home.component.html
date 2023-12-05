@@ -1,0 +1,153 @@
+
+
+<div class="container main-div mx-auto shadow mt-3 mb-5">
+    <div class="restaurantLayout">
+
+        <mat-grid-list class="restaurant-image-grid" cols="4" rowHeight="200px">
+            <mat-grid-tile class="restaurant-image-tile" rowspan="2" colspan="2">
+                <div>
+                    <img *ngIf='restaurantData?.restaurantImages!=undefined && restaurantData?.restaurantImages[0]!=undefined'
+                        [src]='restaurantData?.restaurantImages[0]' onerror="this.src='../../../assets/images/image-not-found.jpeg'" alt='' >
+                    <img *ngIf='restaurantData?.restaurantImages==undefined || restaurantData?.restaurantImages[0]==undefined'
+                        src='../../../assets/images/image-not-found.jpeg' alt=''>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile class="restaurant-image-tile" rowspan="1" colspan="1">
+                <div>
+
+                    <img *ngIf='restaurantData?.restaurantImages!=undefined && restaurantData?.restaurantImages[1]!=undefined'
+                        [src]='restaurantData?.restaurantImages[1]' onerror="this.src='../../../assets/images/image-not-found.jpeg'" alt=''>
+                    <img *ngIf='restaurantData?.restaurantImages==undefined || restaurantData?.restaurantImages[1]==undefined'
+                        src='../../../assets/images/image-not-found.jpeg' alt=''>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile class="restaurant-image-tile" rowspan="1" colspan="1">
+                <div>
+                    <img *ngIf='restaurantData?.restaurantImages!=undefined && restaurantData?.restaurantImages[2]!=undefined'
+                        [src]='restaurantData?.restaurantImages[2]' onerror="this.src='../../../assets/images/image-not-found.jpeg'" alt=''>
+                    <img *ngIf='restaurantData?.restaurantImages==undefined || restaurantData?.restaurantImages[2]==undefined'
+                        src='../../../assets/images/image-not-found.jpeg' alt=''>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile class="restaurant-image-tile" rowspan="1" colspan="1">
+                <div>
+                    <img *ngIf='restaurantData?.restaurantImages!=undefined && restaurantData?.restaurantImages[3]!=undefined'
+                        [src]='restaurantData?.restaurantImages[3]' onerror="this.src='../../../assets/images/image-not-found.jpeg'" alt=''>
+                    <img *ngIf='restaurantData?.restaurantImages==undefined || restaurantData?.restaurantImages[3]==undefined'
+                        src='../../../assets/images/image-not-found.jpeg ' alt=''>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile class="restaurant-image-tile" rowspan="1" colspan="1">
+                <div>
+                    <img *ngIf='restaurantData?.restaurantImages!=undefined && restaurantData?.restaurantImages[4]!=undefined'
+                        [src]='restaurantData?.restaurantImages[4]' onerror="this.src='../../../assets/images/image-not-found.jpeg'" alt=''>
+                    <img *ngIf='restaurantData?.restaurantImages==undefined || restaurantData?.restaurantImages[4]==undefined'
+                        src='../../../assets/images/image-not-found.jpeg' alt=''>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+
+    <section class="row justify-content-between">
+        <div class="left-rest-div col-8">
+            <section class="rest-info">
+                <section>
+                    <h1 class="restaurant-name mt-2">{{restaurantData?.restaurantName}}</h1>
+                    <div>
+
+                        <h3 class="restaurant-info text-secondary">
+                            {{restaurantData?.restaurantCategory | upperCaseConverter}}
+                        </h3>
+
+
+                    </div>
+                    <h3 class="restaurant-info text-secondary">{{restaurantData?.restaurantLocation?.area}},
+                        {{restaurantData?.restaurantLocation?.city}}</h3>
+                </section>
+                <section>
+                    <h3 class="restaurant-info text-secondary">
+                        <span class="text-success" *ngIf="activityStatus == true">
+                            Open
+                        </span>
+                        <span class="text-warning" *ngIf="activityStatus == false">
+                            Closed
+                        </span>
+                         ( Open from {{restaurantData?.workingHours?.start}}:00 to
+                        {{restaurantData?.workingHours?.end}}:00 )
+                    </h3>
+                </section>
+            </section>
+
+        </div>
+
+        <div class="right-rest-rating mt-3 d-flex col-4">
+            <section *ngIf='restaurantData!=undefined'>
+                <star-rating class="mt-5" [value]=restaurantData.rating_avg [totalstars]=5 checkedcolor="orangered"
+                    uncheckedcolor="lightgrey" size="30px" [readonly]=true (rate)="onRate($event)"></star-rating>
+
+                <h3 class="text-center text-secondary">({{restaurantData?.restaurantRatings?.length}} Ratings)
+                </h3>
+            </section>
+            <h2 class="rating-avg bold mt-2">{{restaurantData?.rating_avg?.toFixed(1)}}</h2>
+        </div>
+    </section>
+
+    <section>
+        <button mat-raised-button color="accent" class="add-review-button" (click)="addRating()">Add
+            Rating</button>
+
+        <button mat-raised-button color="accent" class="add-review-button">Directions</button>
+    </section>
+
+    <section>
+        <mat-tab-group dynamicHeight mat-align-tabs="center" color="warn" class="rest-mat-tab pb-5">
+            <mat-tab label="Overview" color="warn" class="label-danger main-rest-content">
+                <h1 class="mt-2">Cuisines</h1>
+                <ng-container *ngFor="let category of restaurantData?.restaurantCategory">
+                    <button mat-stroked-button color="accent" routerLink="/restaurants" [queryParams]="{ 'category':category}" class="cuisine-button">{{category |
+                        upperCaseConverterButton}}</button>
+                </ng-container>
+
+                <h1 class="overview-title my-3">Dishes</h1>
+
+                <h2 class="overview-info display-4 text-secondary">{{getPopularDishes()}}</h2>
+
+
+                <h1 class="average-cost-title my-3">Average Cost</h1>
+                <h2 class="average-cost-info display-4 text-secondary"> {{restaurantData?.avgCost | currency :"INR"}} for two people (approx)</h2>
+
+                <h1 class="overview-title my-3">More Information</h1>
+                <mat-chip-list aria-label="More Information" class="more-info-title mb-3">
+                    <mat-chip color="accent" class="more-info-chip">Home Delivery</mat-chip>
+                    <mat-chip color="accent" class="more-info-chip">Outdoor Seating</mat-chip>
+                    <mat-chip color="accent" class="more-info-chip">Desserts and Bakes</mat-chip>
+                    <mat-chip color="accent" class="more-info-chip">Vegetarian Only</mat-chip>
+                    <mat-chip color="accent" class="more-info-chip">Indoor Seating</mat-chip>
+                    <mat-chip color="accent" class="more-info-chip">Take Away</mat-chip>
+                </mat-chip-list>
+
+
+            </mat-tab>
+
+            <mat-tab label="Order Online">
+                <div class=" container rest-menu-main-div mx-auto">
+                    <mat-slide-toggle class="veg-slider mt-3 text-success" [(ngModel)]="pureVegChecked">Pure Vegetarian
+                    </mat-slide-toggle>
+                    <h1 class="popular-dish mt-3">Popular Dishes</h1>
+
+                    <ng-container *ngFor='let food of foodData | pureVegFilter :    pureVegChecked'>
+                        <app-food-item class="w-100 " [foodData]='food' ></app-food-item>
+                    </ng-container>
+
+                </div>
+            </mat-tab>
+
+            <mat-tab label="View Cart " *ngIf='userData?.role =="user"'>
+                <div class="w-100 overflow-auto">
+                    <app-view-cart ></app-view-cart>
+
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </section>
+</div>

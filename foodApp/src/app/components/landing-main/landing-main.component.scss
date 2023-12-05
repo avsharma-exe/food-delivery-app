@@ -1,0 +1,92 @@
+
+@import '../../../scss_variables.scss';
+.main-div-home {
+  background-color: $color-white ;
+  position: relative;
+
+  .inner {
+    position: relative;
+    top: -100px;
+    background-color: transparent;
+    background-size: contain;
+  }
+}
+
+.carousel-image {
+  height: 70vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+.inner-jumbotron {
+  background: transparent;
+  background-size: contain;
+  margin: auto;
+  height: max-content;
+  min-height: 95vh;
+    .top-restaurants {
+      background: transparent;
+      min-width: inherit;
+      min-height: inherit;
+      .restaurant-carousel-item {
+        justify-content: space-around;
+        min-height: 40vh;
+        margin-bottom: 3rem;
+        @media (min-width: 992px) {
+          .col-lg-4 {
+            flex: 0 0 30%;
+          }
+      }
+    }
+    ol.carousel-indicators > li {
+      background-color: $card-btn-red;
+    }
+    .carousel-next-icon:after {
+      content: ">";
+      font-size: 40px;
+      color: $card-btn-red;
+    }
+    
+    .carousel-prev-icon:after {
+      content: "<";
+      font-size: 40px;
+      color: $card-btn-red;
+    }
+  }
+}
+
+
+.middle-index{
+  img{
+    object-fit: contain;
+    height: 80vh;
+  }
+}
+
+.rating {
+  color: orangered;
+}
+.heading-text {
+  font-family: monospace;
+  color: rgb(244, 67, 54, .8);
+}
+
+.middle-index {
+  background: url("../../../assets/images/background-wooden.jpg");
+  background-size: cover;
+  height: 90vh;
+}
+
+.top-dishes {
+  background-color: $color-white;
+  background: url("../../../assets/images/background-top-dishes.jpg") no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: inherit;
+
+}
+
+.text {
+  background-color: $color-white;
+  border-width: thin;
+}
